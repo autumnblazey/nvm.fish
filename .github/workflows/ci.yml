@@ -36,6 +36,7 @@ jobs:
       run: |
         curl -sL https://git.io/fisher | source
         fisher install $GITHUB_WORKSPACE
+      shell: fish {0}
 
     - name: test that it still works lol
       run: |
@@ -53,3 +54,4 @@ jobs:
         nvm use latest
         nvm use lts/fermium
         nvm use lts/erbium
+      shell: fish {0}
