@@ -20,3 +20,36 @@ jobs:
           fisher install $GITHUB_WORKSPACE jorgebucaran/fishtape
           fishtape tests/*
         shell: fish {0}
+
+  test-again:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Fish
+      run: |
+        sudo apt-add-repository -yn ppa:fish-shell/release-3
+        sudo apt-get update
+        sudo apt-get install -y fish
+
+    - name: installier
+      run: |
+        curl -sL https://git.io/fisher | source
+        fisher install $GITHUB_WORKSPACE
+
+    - name: test that it still works lol
+      run: |
+        nvm install latest
+        npm i -g pnpm
+        pnpm i -g npm
+        pnpm i -g pnpm
+
+        nvm install lts/fermium
+        npm i -g pnpm
+        pnpm i -g npm
+        pnpm i -g pnpm
+
+        nvm install lts/erbium
+        nvm use latest
+        nvm use lts/fermium
+        nvm use lts/erbium
